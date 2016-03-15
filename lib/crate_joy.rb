@@ -8,8 +8,14 @@ module CrateJoy
   end
 
   class API
+
+    def self.client(id, key)
+      ::RestClient::Resource.new "https://api.cratejoy.com/v1", id, key
+    end
+
     def self.orders
-      resource = ::RestClient::Resource.new "https://api.cratejoy.com/v1/shipments/?shipped_at__ge=#{Time.zone.today.beginning_of_day.strftime("%FT%TZ")}", ENV["ACCOUNT"], ENV["PASSWORD"]
+      client = CrateJoy::API.client(ENV["ACCOUNT"], ENV["PASSWORD"])
+      resource = client["/shipments/?shipped_at__ge=2016-02-15T00:00:00Z"]
       response = JSON.parse resource.get
       if response["results"]
         results = response["results"]
