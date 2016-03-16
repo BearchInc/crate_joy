@@ -1,4 +1,5 @@
 require 'crate_joy/box.rb'
+require 'crate_joy/customer.rb'
 
 class Order
   attr_accessor :adjusted_ordered_at
@@ -31,7 +32,7 @@ class Order
     @url = json['url']
     @is_gift = json['is_gift']
 
-    @customer = json['customer']
+    @customer = Customer.new(json['customer'])
     @fulfillments = json['fulfillments']
     @labels = json['labels']
     @customer_id = json['customer_id']
@@ -54,6 +55,6 @@ class Order
   end
 
   def self.name
-    @customer['name']
+    @customer.name
   end
 end
