@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
     raise "RubyGems 2.0 or newer is required to protect against public gem pushes."
   end
 
-  spec.files = ["lib/crate_joy.rb", "lib/crate_joy/box.rb", "lib/crate_joy/client.rb","lib/crate_joy/order.rb", "lib/crate_joy/version.rb"]
+  spec.files = `git ls-files`.split($\)
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
