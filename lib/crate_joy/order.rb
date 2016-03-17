@@ -1,5 +1,6 @@
 require 'crate_joy/box.rb'
 require 'crate_joy/customer.rb'
+require 'crate_joy/fulfillment'
 
 class Order
   attr_accessor :adjusted_ordered_at
@@ -33,6 +34,7 @@ class Order
     @is_gift = json['is_gift']
 
     @customer = Customer.new(json['customer'])
+    @fulfillments = json['fulfillments'].map { | f | Fulfillment.new(f) }
     @labels = json['labels']
     @customer_id = json['customer_id']
     @ship_address = json['ship_address']
