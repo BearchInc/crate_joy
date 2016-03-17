@@ -122,4 +122,28 @@ class TestCrateJoy < Test::Unit::TestCase
     end
   end
 
+  def test_addresses_created
+    @orders.each do |order|
+      assert_instance_of(ShipAddress, order.ship_address)
+    end
+  end
+
+  def test_addresses_have_variables
+    @orders.each do |order|
+      assert_not_nil(order.ship_address.city)
+      assert_not_nil(order.ship_address.company)
+      assert_not_nil(order.ship_address.country)
+      assert_not_nil(order.ship_address.icon)
+      assert_not_nil(order.ship_address.id)
+      assert_not_nil(order.ship_address.phone_number)
+      assert_not_nil(order.ship_address.state)
+      assert_not_nil(order.ship_address.status)
+      assert_not_nil(order.ship_address.street)
+      assert_not_nil(order.ship_address.to)
+      assert_not_nil(order.ship_address.type)
+      assert_not_nil(order.ship_address.unit)
+      assert_not_nil(order.ship_address.zip_code)
+    end
+  end
+  
 end
