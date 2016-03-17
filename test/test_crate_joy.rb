@@ -165,4 +165,32 @@ class TestCrateJoy < Test::Unit::TestCase
       end
     end
   end
+
+  def test_order_costumer
+    @shipments.each do |shipment|
+      shipment.fulfillments.each do |fulfillment|
+        assert_not_nil(fulfillment.order.customer.country)
+        assert_not_nil(fulfillment.order.customer.email)
+        assert_not_nil(fulfillment.order.customer.first_name)
+        assert_not_nil(fulfillment.order.customer.id)
+        assert_not_nil(fulfillment.order.customer.last_name)
+        assert_not_nil(fulfillment.order.customer.location)
+        assert_not_nil(fulfillment.order.customer.name)
+        assert_not_nil(fulfillment.order.customer.type)
+      end
+    end
+  end
+
+  def test_subscription_dependencies
+    @shipments.each do |shipment|
+      shipment.fulfillments.each do |fulfillment|
+        fulfillment.order.subscriptions.each do |subscription|
+          assert_instance_of(Customer, subscription.customer)
+          assert_instance_of(Billing, subscription.billing)
+          assert_instance_of(Term, subscription.term)
+        end
+      end
+    end
+  end
+
 end

@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['daniel.amarante@ambushconsulting.com']
 
   spec.summary       = 'Crate Joy API.'
-  spec.description   = 'Crate Joy API.'
+  spec.description   = 'Crate Joy API..'
   spec.homepage      = 'http://rubygems.org/'
   spec.license       = 'MIT'
   

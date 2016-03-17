@@ -1,3 +1,7 @@
+require 'crate_joy/customer'
+require 'crate_joy/term'
+require 'crate_joy/billing'
+
 class Subscription
   attr_accessor :autorenew
   attr_accessor :billing
@@ -17,9 +21,7 @@ class Subscription
 
   def initialize(json={})
     @autorenew = json['autorenew']
-    @billing = json['billing']
     @credit = json['credit']
-    @customer = json['customer']
     @end_date = json['end_date']
     @id = json['id']
     @is_test = json['is_test']
@@ -29,8 +31,11 @@ class Subscription
     @start_date = json['start_date']
     @status = json['status']
     @store_id = json['store_id']
-    @term = json['term']
     @type = json['type']
+
+    @customer = Customer.new(json['customer'])
+    @billing = Billing.new(json['billing'])
+    @term = Term.new(json['term'])
   end
 
 end
