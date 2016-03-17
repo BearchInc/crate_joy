@@ -193,4 +193,15 @@ class TestCrateJoy < Test::Unit::TestCase
     end
   end
 
+  def test_instance_dependencies
+    @shipments.each do |shipment|
+      shipment.fulfillments.each do |fulfillment|
+        assert_instance_of(Product, fulfillment.instance.product)
+        fulfillment.instance.term_prices.each do |term_price|
+          assert_instance_of(TermPrice, term_price)
+        end
+      end
+    end
+  end
+
 end

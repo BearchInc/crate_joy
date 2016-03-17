@@ -1,3 +1,6 @@
+require 'crate_joy/term_price'
+require 'crate_joy/product'
+
 class Instance
   attr_accessor :deleted
   attr_accessor :gift
@@ -20,12 +23,13 @@ class Instance
     @images = json['images']
     @inventory = json['inventory']
     @price = json['price']
-    @product = json['product']
     @product_id = json['product_id']
     @ship_weight = json['ship_weight']
     @sku = json['sku']
-    @term_prices = json['term_prices']
     @type = json['type']
     @variants = json['variants']
+
+    @product = Product.new(json['product'])
+    @term_prices = json['term_prices'].map { | price | TermPrice.new(price) }
   end
 end
