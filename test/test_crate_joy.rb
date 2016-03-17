@@ -159,6 +159,9 @@ class TestCrateJoy < Test::Unit::TestCase
     @shipments.each do |shipment|
       shipment.fulfillments.each do |fulfillment|
         assert_instance_of(Customer, fulfillment.order.customer)
+        unless fulfillment.order.received_gift.nil?
+          assert_instance_of(ReceivedGift, fulfillment.order.received_gift)
+        end
         fulfillment.order.subscriptions.each do |subscription|
           assert_instance_of(Subscription, subscription)
         end

@@ -1,5 +1,6 @@
 require 'crate_joy/customer'
 require 'crate_joy/subscription'
+require 'crate_joy/received_gift'
 
 class Order
   attr_accessor :card_refunded_amount
@@ -50,7 +51,6 @@ class Order
     @note = json['note']
     @placed_at = json['placed_at']
     @prorated_charge = json['prorated_charge']
-    @received_gift = json['received_gift']
     @refund_applied = json['refund_applied']
     @refunded_amount = json['refunded_amount']
     @sent_gift = json['sent_gift']
@@ -67,6 +67,7 @@ class Order
     @transaction_fee_status = json['transaction_fee_status']
     @type = json['type']
 
+    @received_gift = json['received_gift'].nil? ? json['received_gift'] : ReceivedGift.new(json['received_gift'])
     @customer = Customer.new(json['customer'])
     @subscriptions = json['subscriptions'].map {|subscription| Subscription.new(subscription)}
   end
