@@ -146,4 +146,15 @@ class TestCrateJoy < Test::Unit::TestCase
     end
   end
 
+  def test_fulfillment_dependencies
+    @shipments.each do |shipment|
+      shipment.fulfillments.each do |fulfillment|
+        assert_instance_of(Instance, fulfillment.instance)
+        assert_instance_of(Order, fulfillment.order)
+      end
+    end
+  end
+
+
+
 end

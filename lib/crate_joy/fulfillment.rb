@@ -1,3 +1,6 @@
+require 'crate_joy/instance'
+require 'crate_joy/order'
+
 class Fulfillment
   attr_accessor :adjusted_fulfillment_date
   attr_accessor :cycle_number
@@ -30,9 +33,8 @@ class Fulfillment
     @total_cycles = json['total_cycles']
     @type = json['type']
 
-
-    @instance = json['instance']
-    @order = json['order']
+    @instance = Instance.new(json['instance'])
+    @order = Order.new(json['order'])
   end
 
 end
