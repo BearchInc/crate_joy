@@ -4,7 +4,7 @@ require 'crate_joy/fulfillment'
 require 'crate_joy/label'
 require 'crate_joy/ship_address'
 
-class Order
+class Shipment
   attr_accessor :adjusted_ordered_at
   attr_accessor :created_at
   attr_accessor :customer

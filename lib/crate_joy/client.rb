@@ -1,5 +1,5 @@
 require 'rest-client'
-require 'crate_joy/order.rb'
+require 'crate_joy/shipment.rb'
 
 class Client
 
@@ -9,13 +9,13 @@ class Client
     @resource = ::RestClient::Resource.new BASE_URL, id, key
   end
 
-  def orders(date)
-    resource = orders_path(date)
+  def shipments(date)
+    resource = shipments_path(date)
     response = JSON.parse resource.get
     if response['results']
       results = response['results']
       results = results.map do |result|
-        Order.new(result)
+        Shipment.new(result)
       end
     else
       results = []
@@ -24,7 +24,7 @@ class Client
   end
 
   private
-  def orders_path(date)
+  def shipments_path(date)
     date = format_date(date)
     @resource["/shipments/?shipped_at__ge=#{date}"]
   end
