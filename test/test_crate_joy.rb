@@ -92,4 +92,34 @@ class TestCrateJoy < Test::Unit::TestCase
     end
   end
 
+  def test_labels_created
+    @orders.each do |order|
+      order.labels.each do |label|
+        assert_instance_of(Label, label)
+      end
+    end
+  end
+
+  def test_labels_have_variables
+    @orders.each do |order|
+      order.labels.each do |label|
+        assert_not_nil(label.api)
+        assert_not_nil(label.carrier)
+        assert_not_nil(label.cost)
+        assert_not_nil(label.created_at)
+        assert_not_nil(label.ezp_created_at)
+        assert_not_nil(label.ezp_updated_at)
+        assert_not_nil(label.filetype)
+        assert_not_nil(label.financial_status)
+        assert_not_nil(label.height)
+        assert_not_nil(label.id)
+        assert_not_nil(label.is_test)
+        assert_not_nil(label.is_void)
+        assert_not_nil(label.length)
+        assert_not_nil(label.overlay_cdn)
+        assert_not_nil(label.overlay_s3)
+      end
+    end
+  end
+
 end
