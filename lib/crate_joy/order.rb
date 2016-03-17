@@ -33,7 +33,6 @@ class Order
     @is_gift = json['is_gift']
 
     @customer = Customer.new(json['customer'])
-    @fulfillments = json['fulfillments']
     @labels = json['labels']
     @customer_id = json['customer_id']
     @ship_address = json['ship_address']
@@ -54,7 +53,7 @@ class Order
     ]
   end
 
-  def self.name
+  def name
     @customer.name
   end
 end
