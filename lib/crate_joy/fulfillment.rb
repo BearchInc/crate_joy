@@ -20,9 +20,7 @@ class Fulfillment
     @cycle_number = json['cycle_number']
     @fulfillment_date = json['fulfillment_date']
     @id = json['id']
-    @instance = json['instance']
     @is_test = json['is_test']
-    @order = json['order']
     @shipment_id = json['shipment_id']
     @shipping = json['shipping']
     @status = json['status']
@@ -31,6 +29,10 @@ class Fulfillment
     @test = json['test']
     @total_cycles = json['total_cycles']
     @type = json['type']
+
+
+    @instance = json['instance']
+    @order = json['order']
   end
 
 end
