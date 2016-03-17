@@ -1,0 +1,2 @@
+class ReceivedGift
+end
