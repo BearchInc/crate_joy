@@ -1,3 +1,6 @@
+require 'crate_joy/customer'
+require 'crate_joy/subscription'
+
 class Order
   attr_accessor :card_refunded_amount
   attr_accessor :credit_applied
@@ -35,7 +38,6 @@ class Order
   def initialize(json={})
     @card_refunded_amount = json['card_refunded_amount']
     @credit_applied = json['credit_applied']
-    @customer = json['customer']
     @customer_id = json['customer_id']
     @financial_status = json['financial_status']
     @fulfillment_status = json['fulfillment_status']
@@ -54,7 +56,6 @@ class Order
     @sent_gift = json['sent_gift']
     @status = json['status']
     @store_id = json['store_id']
-    @subscriptions = json['subscriptions']
     @total = json['total']
     @total_app_fees = json['total_app_fees']
     @total_label_cost = json['total_label_cost']
@@ -65,6 +66,9 @@ class Order
     @transaction_fee = json['transaction_fee']
     @transaction_fee_status = json['transaction_fee_status']
     @type = json['type']
+
+    @customer = Customer.new(json['customer'])
+    @subscriptions = json['subscriptions'].map {|subscription| Subscription.new(subscription)}
   end
 
 end
